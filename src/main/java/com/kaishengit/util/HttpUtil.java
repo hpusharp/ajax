@@ -19,10 +19,11 @@ public class HttpUtil {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         //请求方式
         HttpGet httpGet = new HttpGet(url);
-        //发送请求,并获取返回的响应
+
         try {
-            InputStream inputStream = null;
+            //发送请求,并获取返回的响应
             HttpResponse response = httpClient.execute(httpGet);
+            InputStream inputStream = null;
 
             if (response.getStatusLine().getStatusCode() == 200) {
                 //把响应的值放入输入流中
