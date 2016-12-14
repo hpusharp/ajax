@@ -1,31 +1,30 @@
 package com.kaishengit.web;
 
-import com.kaishengit.util.HttpUtil;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by shibo on 2016/12/6.
+ * Created by shibo on 2016/12/10.
  */
-@WebServlet("/rss.xml")
-public class RssServlet extends HttpServlet {
+@WebServlet("/checkemail")
+public class CheckEmailServlet extends BasicServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String url = req.getParameter("url");
-       String result = HttpUtil.sendHttpGetWithString(url);
 
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/xml;charset=UTF-8");
+        String email = req.getParameter("mail");
+        System.out.println("email:"+ email);
 
         PrintWriter out = resp.getWriter();
-        out.print(result);
+        if("tom@qq.com".equals(email)) {
+            out.print("false");
+        }else {
+            out.print("true");
+        }
         out.flush();
         out.close();
     }
